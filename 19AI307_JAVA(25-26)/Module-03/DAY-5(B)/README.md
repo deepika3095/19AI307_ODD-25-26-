@@ -32,7 +32,12 @@ Program to implement Inner Class using Java
 Developed by: Deepika R
 RegisterNumber: 212223230038 
 */
+```
 
+
+## SOURCE CODE:
+
+```
 import java.util.Scanner;
 
 class OuterClass{
@@ -60,22 +65,6 @@ public class Main{
     }
 }
 ```
-
-
-## SOURCE CODE:
-
-Compile the program using
-
-```
-javac Main.java
-```
-
-Run the program using
-
-```
-java Main
-```
-
 
 ## OUTPUT:
 
