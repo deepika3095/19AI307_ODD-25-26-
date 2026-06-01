@@ -1,77 +1,70 @@
-# Ex.No:3(E) INNER CLASS
+# Ex.No:3(F) WRAPPER CLASS
 
 ## QUESTION:
-Write a Java program to demonstrate the concept of **Inner Class**.
-
+Write a Java program to check if a number is an Armstrong number using Math.pow() and the Integer wrapper class. Take input from the user.
 
 ## AIM:
-To write a Java program to demonstrate the **Inner Class concept by accessing inner class methods from outer class**.
+To write a Java program that checks whether a given number is an Armstrong number by calculating the sum of its digits raised to the power of the total digit count using Math.pow() and the Integer wrapper class.
 
 
 ## ALGORITHM :
-1. Start the program.  
-2. Import the necessary package `java.util`.  
-3. Create a class `OuterClass`.  
-4. Inside it, create an inner class `InnerClass`.  
-5. Define a method `display()` in the inner class to print a message.  
-6. In the outer class, create a method `accessInner()` to create an object of the inner class.  
-7. Call the inner class method using the object.  
-8. In the `main()` method, create a `Scanner` object.  
-9. Read the name from the user.  
-10. Create an object of `OuterClass`.  
-11. Call the method to access the inner class.  
-12. Display the output.  
-13. Stop the program.
+
+1. Start the program and initialize a Scanner object to capture user input.
+
+2. Read an integer number from the user and store it in a variable named num.
+
+3. Determine the total number of digits by converting num to a string using the wrapper class method Integer.toString(num).length().
+
+4. Extract each digit sequentially using a loop with the modulus operator (%) and divide the number by 10 (/) in each iteration.
+
+5. Compute the power of each extracted digit using Math.pow(digit, digits) and add it to a running total sum.
+
+6. Compare the final sum with the original number, print the corresponding Armstrong matching result message, and stop.
+
 
 
 ## PROGRAM:
-
-```java
+ ```
 /*
-Program to implement Inner Class using Java
+Program to implement a Wrapper Class using Java
 Developed by: Deepika R
-RegisterNumber: 212223230038 
+RegisterNumber:  212223230038
 */
 ```
 
-
 ## SOURCE CODE:
 
-```
-import java.util.Scanner;
-
-class OuterClass{
-
-    class InnerClass{
-        public void display(String name){
-            System.out.println("Hello, " + name + "! This message is from the Inner Class.");
+```import java.util.*;
+class prog{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        int temp=num;
+        int sum=0;
+        int digits=Integer.toString(num).length();
+        while(temp>0){
+            int digit=temp%10;
+            sum+=(int)Math.pow(digit,digits);
+            temp/=10;
+        }
+        if(sum==num){
+            System.out.println(num + " is an Armstrong number.");
+        }
+        else{
+            System.out.println(num+ " is not an Armstrong number.");
         }
     }
-
-    public void accessInner(String name){
-        InnerClass inner = new InnerClass();
-        inner.display(name);
-    }
-}
-
-public class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-
-        String name = sc.nextLine().trim();
-
-        OuterClass outer = new OuterClass();
-        outer.accessInner(name);
-    }
 }
 ```
+
+
+
+
 
 ## OUTPUT:
 
-<img width="1015" height="227" alt="image" src="https://github.com/user-attachments/assets/83606ba7-2c05-4889-8c55-ea8e341e93d8" />
-
+<img width="688" height="228" alt="image" src="https://github.com/user-attachments/assets/533c5626-dd54-4c32-929d-57335cf91746" />
 
 
 ## RESULT:
-
-Thus, the Java program to demonstrate the **Inner Class concept** was executed successfully and the output was verified.
+Thus the program to implement wrapper class for the given input was exeecuted successfully.
