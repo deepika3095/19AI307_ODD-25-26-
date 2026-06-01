@@ -1,133 +1,89 @@
-# Ex.No:5(E) MULTITHREADING - SYNCHRONIZATION
+# Ex.No:3(E) INNER CLASS
 
 ## QUESTION:
-Write a Java program to demonstrate **multithreading with synchronization** using `wait()` and `notify()`.
-
+Write a Java program to calculate the sum of each digit raised to the power of the total number of digits using an inner class. Check whether the given number is an Armstrong number or not.
 
 ## AIM:
-To write a Java program to demonstrate **thread synchronization** using `synchronized`, `wait()`, and `notify()` methods.
 
-
+To write a Java program that checks whether a given number is an Armstrong number by implementing an inner class architecture.
 ## ALGORITHM :
-1. Start the program.  
-2. Import the necessary package `java.util`.  
-3. Create a class `Printer`.  
-4. Declare a boolean variable `helloTurn` to control execution.  
-5. Create a synchronized method `printHello()`:
-   - Wait if it is not hello’s turn.  
-   - Print "Hello".  
-   - Change turn and notify the other thread.  
-6. Create another synchronized method `printWorld()`:
-   - Wait if it is not world’s turn.  
-   - Print "World".  
-   - Change turn and notify the other thread.  
-7. Create a class `HelloThread` extending `Thread`.  
-8. Override `run()` to call `printHello()` `n` times.  
-9. Create a class `WorldThread` extending `Thread`.  
-10. Override `run()` to call `printWorld()` `n` times.  
-11. In the main class, read integer `n` from the user.  
-12. Create a `Printer` object.  
-13. Create two threads (`HelloThread` and `WorldThread`).  
-14. Start both threads.  
-15. Stop the program.
+1. Start the program and initialize a Scanner object to accept a number from the user.
 
----
+2. Define an outer class ArmstrongDetector containing an inner class named Checker.
+
+3. Implement a method verify(int num) inside the inner class to calculate the Armstrong mathematical logic.
+
+4. Instantiate the inner class in the main method by first creating an instance of the outer class.
+
+5. Call the verify method using the inner class object reference, passing the user-inputted number.
+
+6. Print the final result stating whether the number matches its power-sum matrix and stop.
+
+
 
 ## PROGRAM:
-
-```java
+ ```
 /*
-Program to implement Multithreading Synchronization using Java
-Developed by: DEEPIKA R
+Program to implement a InnerClass using Java
+Developed by: Deepika R
 RegisterNumber: 212223230038
 */
-
 ```
 
 ## SOURCE CODE:
 ```
-import java.util.*;
+import java.util.Scanner;
 
-class Printer {
-    private boolean helloTurn = true;
+class ArmstrongDetector {
+    // Inner class to handle the calculation logic
+    class Checker {
+        void verify(int num) {
+            int temp = num;
+            int sum = 0;
+            int digits = Integer.toString(num).length();
 
-    public synchronized void printHello() {
-        try {
-            while (!helloTurn)
-                wait();
+            while (temp > 0) {
+                int digit = temp % 10;
+                sum += (int) Math.pow(digit, digits);
+                temp /= 10;
+            }
 
-            System.out.println("Hello");
-            helloTurn = false;
-            notify();
-        } catch (Exception e) {}
-    }
-
-    public synchronized void printWorld() {
-        try {
-            while (helloTurn)
-                wait();
-
-            System.out.println("World");
-            helloTurn = true;
-            notify();
-        } catch (Exception e) {}
+            if (sum == num) {
+                System.out.println(num + " is an Armstrong number.");
+            } else {
+                System.out.println(num + " is not an Armstrong number.");
+            }
+        }
     }
 }
 
-class HelloThread extends Thread {
-    Printer p;
-    int n;
-
-    HelloThread(Printer p, int n) {
-        this.p = p;
-        this.n = n;
-    }
-
-    public void run() {
-        for (int i = 0; i < n; i++)
-            p.printHello();
-    }
-}
-
-class WorldThread extends Thread {
-    Printer p;
-    int n;
-
-    WorldThread(Printer p, int n) {
-        this.p = p;
-        this.n = n;
-    }
-
-    public void run() {
-        for (int i = 0; i < n; i++)
-            p.printWorld();
-    }
-}
-
-public class Main {
+public class prog {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
 
-        int n = sc.nextInt();
+        // Instantiating the outer class, then the inner class
+        ArmstrongDetector outer = new ArmstrongDetector();
+        ArmstrongDetector.Checker inner = outer.new Checker();
 
-        Printer p = new Printer();
-
-        Thread t1 = new HelloThread(p, n);
-        Thread t2 = new WorldThread(p, n);
-
-        t1.start();
-        t2.start();
+        // Calling the method from the inner class
+        inner.verify(num);
+        
+        sc.close();
     }
 }
+
 ```
 
 
-## OUTPUT:
 
-<img width="200" height="600" alt="image" src="https://github.com/user-attachments/assets/cc2834aa-43bb-45ce-99f3-2966b164c933" />
+
+
+
+## OUTPUT:
+<img width="705" height="236" alt="image" src="https://github.com/user-attachments/assets/4a4f8fdc-9eb0-43c2-ab6b-8bb68b86696d" />
 
 
 
 ## RESULT:
-
-Thus, the Java program to demonstrate **multithreading with synchronization using wait() and notify()** was executed successfully and the output was verified.
+Thus the java program to implement inner class was executed successfully.
